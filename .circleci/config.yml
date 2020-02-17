@@ -1,24 +1,28 @@
-version: 2
+#version: 2
+version: 2.1 # Use version 2.1 to enable Orb usage.
+
+
 jobs:
-  build:
+  build: 
     working_directory: ~/Akarin-project/AkarinForge
     parallelism: 1
-    shell: /bin/bash --login
     environment:
       TERM: dumb
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      _JAVA_OPTIONS: "-Xmx3g"
+      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
     docker:
-    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
-      command: /sbin/init
+      - image: circleci/openjdk:8u242-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/postgres:12-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: circle_test
     steps:
     # Machine Setup
     - checkout
     # Prepare for artifact
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run:
-        working_directory: ~/Akarin-project/AkarinForge
-        command: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java; sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac; echo -e "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $BASH_ENV
+    - run: mkdir -p %CIRCLE_ARTIFACTS% %CIRCLE_TEST_REPORTS%
     # Dependencies
     # Restore the dependency cache
     - restore_cache:
@@ -30,7 +34,8 @@ jobs:
     - run: export TERM=${TERM:-dumb}
     - run: git config --global user.email "circle@circleci.com"
     - run: git config --global user.name "CircleCI"
-    - run: chmod +x scripts/inst.sh
+    - run: chmod -Rv +x scripts/
+    - run: chmod -Rv +x work/MinecraftForge/
     - run: ./scripts/inst.sh --setup
     # Save dependency cache
     - save_cache:
