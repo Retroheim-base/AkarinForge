@@ -41,10 +41,10 @@ echo "[Akarin] Ready to build"
 	cd "$forgebasedir"
 	echo "[Akarin] Build Forge.. (1/2)"
 	./gradlew genPatches
-	#echo "[Akarin] Brute Forcing"
-	#\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
+	echo "[Akarin] Brute Forcing"
+	\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
 	echo "[Akarin] Build Forge.. (2/2)"
-	./gradlew launch4j
+	./gradlew launch4j --debug
 
 	build="$forgebasedir/build/distributions"
 	\cp -rf "$build" "$basedir/"
