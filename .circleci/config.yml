@@ -1,4 +1,4 @@
-version: 2.1 # Use version 2.1 to enable Orb usage.
+version: 2 # Use version 2.1 to enable Orb usage.
 
 jobs:
   build: 
