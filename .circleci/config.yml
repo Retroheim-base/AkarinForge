@@ -1,17 +1,15 @@
-#version: 2
 version: 2.1 # Use version 2.1 to enable Orb usage.
-
 
 jobs:
   build: 
     working_directory: ~/Akarin-project/AkarinForge
     parallelism: 1
+    shell: /bin/bash --login
     environment:
       TERM: dumb
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      _JAVA_OPTIONS: "-Xmx3g"
-      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+      _JAVA_OPTIONS: "-Xmx4g"
     docker:
       - image: circleci/openjdk:8u242-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
       - image: circleci/postgres:12-alpine
@@ -24,6 +22,7 @@ jobs:
     # Prepare for artifact
     - run: mkdir -p %CIRCLE_ARTIFACTS% %CIRCLE_TEST_REPORTS%
     # Dependencies
+  #  - run: mvn dependency:go-offline
     # Restore the dependency cache
     - restore_cache:
         keys:
@@ -34,9 +33,12 @@ jobs:
     - run: export TERM=${TERM:-dumb}
     - run: git config --global user.email "circle@circleci.com"
     - run: git config --global user.name "CircleCI"
+    - run: sudo apt update
+    - run: sudo apt upgrade
+    - run: sudo apt-get install maven
     - run: chmod -Rv +x scripts/
     - run: chmod -Rv +x work/MinecraftForge/
-    - run: ./scripts/inst.sh --setup
+    - run: ./scripts/inst.sh --setup --setup
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
