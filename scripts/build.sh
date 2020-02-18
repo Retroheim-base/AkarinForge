@@ -15,13 +15,13 @@ if [ "$2" == "--setup" ] || [ "$3" == "--setup" ] || [ "$4" == "--setup" ]; then
 		./gradlew setupForge
 		
 		echo "[Akarin] Touch workspace.."
-		#\cp -rf "$forgebasedir/projects/Forge/.settings" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/.project" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/.classpath" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/.settings" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/Forge.iml" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/Forge Client.launch" "$basedir/"
-		#\cp -rf "$forgebasedir/projects/Forge/Forge Server.launch" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/.settings" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/.project" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/.classpath" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/.settings" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/Forge.iml" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/Forge Client.launch" "$basedir/"
+		\cp -rf "$forgebasedir/projects/Forge/Forge Server.launch" "$basedir/"
 	)
 fi
 echo "[Akarin] Ready to build"
