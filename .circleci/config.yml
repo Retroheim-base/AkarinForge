@@ -1,9 +1,7 @@
-version: 2 # Use version 2.1 to enable Orb usage.
+version: 2.1 # Use version 2.1 to enable Orb usage.
 
 jobs:
   build: 
-    branches:
-      only: craftbukkit
     working_directory: ~/Akarin-project/AkarinForge
     parallelism: 1
     shell: /bin/bash --login
