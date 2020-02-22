@@ -31,18 +31,18 @@ echo "[Akarin] Ready to build"
 	\cp -rf "$basedir/icon.ico" "$forgebasedir/"
 
 	echo "[Akarin] Touch server.."
-	if [ "$2" == "--delsrc" ] || [ "$3" == "--delsrc" ] || [ "$4" == "--delsrc" ]; then
-		\rm -rf "$forgebasedir/projects/Forge/src"
+	if [ "$2" == "--nodelsrc" ] || [ "$3" == "--nodelsrc" ] || [ "$4" == "--nodelsrc" ]; then
 		\cp -rf "$basedir/sources/server/src" "$forgebasedir/projects/Forge/"
 	else
+		\rm -rf "$forgebasedir/projects/Forge/src"
 		\cp -rf "$basedir/sources/server/src" "$forgebasedir/projects/Forge/"
 	fi
 	
 	echo "[Akarin] Touch forge.."
-	if [ "$2" == "--delsrc" ] || [ "$3" == "--delsrc" ] || [ "$4" == "--delsrc" ]; then
-		\rm -rf "$forgebasedir/src"
+	if [ "$2" == "--nodelsrc" ] || [ "$3" == "--nodelsrc" ] || [ "$4" == "--nodelsrc" ]; then
 		\cp -rf "$basedir/sources/forge/src" "$forgebasedir/"
 	else
+		\rm -rf "$forgebasedir/src"
 		\cp -rf "$basedir/sources/forge/src" "$forgebasedir/"
 	fi
 
