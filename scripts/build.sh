@@ -31,18 +31,16 @@ echo "[Akarin] Ready to build"
 	\cp -rf "$basedir/icon.ico" "$forgebasedir/"
 
 	echo "[Akarin] Touch forge.."
-	#\rm -rf "$forgebasedir/projects/Forge/src"
 	\cp -rf "$basedir/sources/server/src" "$forgebasedir/projects/Forge/"
 	
 	echo "[Akarin] Touch server.."
-	#\rm -rf "$forgebasedir/src"
 	\cp -rf "$basedir/sources/forge/src" "$forgebasedir/"
 
 	cd "$forgebasedir"
 	echo "[Akarin] Build Forge.. (1/2)"
 	./gradlew genPatches
-	#echo "[Akarin] Brute Forcing"
-	#\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
+	echo "[Akarin] Brute Forcing"
+	\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
 	echo "[Akarin] Build Forge.. (2/2)"
 	./gradlew launch4j
 
