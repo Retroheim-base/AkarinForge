@@ -52,7 +52,7 @@ echo "[Akarin] Ready to build"
 	echo "[Akarin] Brute Forcing"
 	\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
 	echo "[Akarin] Build Forge.. (2/2)"
-	./gradlew launch4j
+	./gradlew createExe
 
 	build="$forgebasedir/build/distributions"
 	\cp -rf "$build" "$basedir/"
