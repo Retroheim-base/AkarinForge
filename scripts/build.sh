@@ -49,12 +49,12 @@ echo "[Akarin] Ready to build"
 	cd "$forgebasedir"
 	echo "[Akarin] Build Forge.. (1/2)"
 	./gradlew genPatches
-	if [ "$2" == "--brute" ] || [ "$3" == "--brute" ] || [ "$4" == "--brute" ]; then
-		echo "[Akarin] Brute Forcing"
-		\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
+	if [ "$2" == "--nobrute" ] || [ "$3" == "--nobrute" ] || [ "$4" == "--nobrute" ]; then
 		echo "[Akarin] Build Forge.. (2/2)"
 		./gradlew createExe
 	else
+		echo "[Akarin] Brute Forcing"
+		\cp "$basedir/changelog_new.txt" "$forgebasedir/build/"
 		echo "[Akarin] Build Forge.. (2/2)"
 		./gradlew createExe
 	fi
