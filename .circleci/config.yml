@@ -40,7 +40,7 @@ jobs:
     - run: git config --global user.name "CircleCI"
     - run: chmod -Rv +x scripts/
     - run: chmod -Rv +x work/MinecraftForge/
-    - run: ./scripts/inst.sh --setup --nodelsrc --nobrute
+    - run: ./scripts/inst.sh --setup --nodelsrc
     # Save dependency cache
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
