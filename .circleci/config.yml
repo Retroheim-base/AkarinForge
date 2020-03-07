@@ -25,8 +25,9 @@ jobs:
     - run: sudo apt update
     - run: sudo apt upgrade
     - run: sudo apt-get install maven
+    - run: sudo apt-get install openjdk-8-jdk
     - run: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java; sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/javac; echo -e "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $BASH_ENV
-    - run: mvn dependency:go-offline
+   # - run: mvn dependency:go-offline
     # Restore the dependency cache
     - restore_cache:
         keys:
