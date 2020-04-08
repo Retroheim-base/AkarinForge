@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+ 
 (
 set -e
 basedir="$(cd "$1" && pwd -P)"
